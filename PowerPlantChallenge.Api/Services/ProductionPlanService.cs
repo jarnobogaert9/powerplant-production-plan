@@ -4,7 +4,7 @@ namespace PowerPlantChallenge.Api.Services
 {
     public class ProductionPlanService : IProductionPlanService
     {
-        async public Task<List<ProductionPlan>> GetProductionPlanAsync()
+        async public Task<List<ProductionPlan>> GetProductionPlanAsync(Payload pyaload)
         {
             // This service should contain the real calculation to get the production plan
             // Caclulate the cost per MWh based on efficiency

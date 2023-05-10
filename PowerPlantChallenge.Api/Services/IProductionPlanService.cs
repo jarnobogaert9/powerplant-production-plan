@@ -4,6 +4,6 @@ namespace PowerPlantChallenge.Api.Services
 {
     public interface IProductionPlanService
     {
-        Task<List<ProductionPlan>> GetProductionPlanAsync();
+        Task<List<ProductionPlan>> GetProductionPlanAsync(Payload payload);
     }
 }

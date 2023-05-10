@@ -19,7 +19,7 @@ namespace PowerPlantChallenge.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<List<ProductionPlan>>> GetProductionPlan(Payload payload)
         {
-            var response = await productionPlanService.GetProductionPlanAsync();
+            var response = await productionPlanService.GetProductionPlanAsync(payload);
             return Ok(response);
         }
     }
