@@ -19,8 +19,6 @@ namespace PowerPlantChallenge.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<List<ProductionPlan>>> GetProductionPlan(Payload payload)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             var response = await productionPlanService.GetProductionPlanAsync();
             return Ok(response);
         }
