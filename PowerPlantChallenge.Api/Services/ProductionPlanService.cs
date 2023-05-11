@@ -11,7 +11,9 @@ namespace PowerPlantChallenge.Api.Services
             // This will give us an idea how much each powerplant will cost per MWh taken into account their efficiency
 
             payload.Powerplants.ForEach(p => p.Cost = CaclulateCostPerMWh(p, payload.Fuels));
-            payload.Powerplants.Where(p => p.Type.ToLower() == "windturbine").ToList().ForEach(p => p.PMax = p.PMax * payload.Fuels.Wind);
+
+            // Caclulate PMax of windturbine based on the wind percentage
+            payload.Powerplants.Where(p => p.Type.ToLower() == "windturbine").ToList().ForEach(p => p.PMax = p.PMax * (payload.Fuels.Wind / 100));
 
 
             return await Task.Run(() =>
