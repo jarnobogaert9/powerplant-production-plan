@@ -11,6 +11,7 @@ namespace PowerPlantChallenge.Api.Services
             // This will give us an idea how much each powerplant will cost per MWh taken into account their efficiency
             return await Task.Run(() =>
             {
+                throw new Exception("Error occured while calculating production plan.");
                 return new List<ProductionPlan> {
                     new ProductionPlan
                     {

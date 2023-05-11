@@ -16,11 +16,20 @@ namespace PowerPlantChallenge.Api.Controllers
         {
             this.productionPlanService = productionPlanService;
         }
+
         [HttpPost]
         public async Task<ActionResult<List<ProductionPlan>>> GetProductionPlan(Payload payload)
         {
-            var response = await productionPlanService.GetProductionPlanAsync(payload);
-            return Ok(response);
+            try
+            {
+                var response = await productionPlanService.GetProductionPlanAsync(payload);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            
         }
     }
 }
