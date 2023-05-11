@@ -11,12 +11,14 @@ namespace PowerPlantChallenge.Api.Dtos
         public string Type { get; set; }
 
         [Required]
-        public double? Efficiency { get; set; }
+        public double Efficiency { get; set; }
 
         [Required]
-        public double? PMin { get; set; }
+        public double PMin { get; set; }
 
         [Required]
-        public double? PMax { get; set; }
+        public double PMax { get; set; }
+
+        public double Cost { get; set; }
     }
 }

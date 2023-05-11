@@ -6,12 +6,17 @@ namespace PowerPlantChallenge.Api.Services
     {
         async public Task<List<ProductionPlan>> GetProductionPlanAsync(Payload payload)
         {
-            // This service should contain the real calculation to get the production plan
+            // This service should contain the calculation to get the production plan
             // Caclulate the cost per MWh based on efficiency
             // This will give us an idea how much each powerplant will cost per MWh taken into account their efficiency
+
+            payload.Powerplants.ForEach(p => p.Cost = CaclulateCostPerMWh(p, payload.Fuels));
+            payload.Powerplants.Where(p => p.Type.ToLower() == "windturbine").ToList().ForEach(p => p.PMax = p.PMax * payload.Fuels.Wind);
+
+
             return await Task.Run(() =>
             {
-                throw new Exception("Error occured while calculating production plan.");
+                //throw new Exception("Error occured while calculating production plan.");
                 return new List<ProductionPlan> {
                     new ProductionPlan
                     {
@@ -45,6 +50,18 @@ namespace PowerPlantChallenge.Api.Services
                     }
                 };
             });
+        }
+
+        double CaclulateCostPerMWh(Powerplant powerplant, Fuel fuels)
+        {
+            // Calculate cost per MWh
+            double cost = powerplant.Type.ToLower() switch
+            {
+                "gasfired" => (1 / powerplant.Efficiency) * fuels.Gas,
+                "turbojet" => (1 / powerplant.Efficiency) * fuels.Kerosine,
+                "windturbine" => 0
+            };
+            return cost;
         }
     }
 }

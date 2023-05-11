@@ -7,7 +7,7 @@ namespace PowerPlantChallenge.Api.Dtos
     {
         [Required]
         [Range(1, Int32.MaxValue)]
-        public double? Load { get; set; }
+        public double Load { get; set; }
         
         [Required]
         public Fuel Fuels { get; set; }
